@@ -30,12 +30,16 @@ public class Serie {
 
     private String ano;
 
+    private String atores;
+
     private Double avaliacao;
+
+    private String diretores;
 
     @Column(length = 500)
     private String poster;
 
-    @Transient
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
 
 
@@ -43,6 +47,8 @@ public class Serie {
         this.titulo = dadosSerie.titulo();
         this.totalTemporadas = dadosSerie.totalTemporadas();
         this.sinopse = ConsultaGemini.obterTraducao(dadosSerie.sinopse().trim());
+        this.atores = dadosSerie.atores();
+        this.diretores = dadosSerie.diretores();
         this.ano = Formatar.formatar(dadosSerie.ano());
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.avaliacao = OptionalDouble.of(Double.valueOf(dadosSerie.avaliacao())).orElse(0);
@@ -65,6 +71,7 @@ public class Serie {
     }
 
     public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e-> e.setSerie(this));
         this.episodios = episodios;
     }
 
@@ -100,6 +107,13 @@ public class Serie {
         this.genero = genero;
     }
 
+    public String getAtores() {
+        return atores;
+    }
+
+    public void setAtores(String atores) {
+        this.atores = atores;
+    }
 
     public String getAno() {
         return ano;
@@ -130,9 +144,12 @@ public class Serie {
         return "Gênero(s): " + genero +
                 "\nSérie: " + titulo +
                 " (" + totalTemporadas + " temporadas)" +
+                " -  atores: " + atores +
+                " - Diretores: " + diretores +
                 " - sinopse: " + sinopse +
-                "ano: " + ano +
+                "no: " + ano +
                 " - avaliação: " + avaliacao +
-                "\nPoster: " + poster;
+                "\nPoster: " + poster +
+                "\nEpisodios: " + episodios;
     }
 }
