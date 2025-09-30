@@ -1,7 +1,5 @@
-package br.com.projeto.screematch.principal;
+package br.com.projeto.watchthis.model;
 
-import br.com.projeto.screematch.model.DadosEpisodioTemporada;
-import br.com.projeto.screematch.model.Serie;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -25,6 +23,9 @@ public class Episodio {
 
     private LocalDate anoLancamento;
 
+    @Column(length = 2000)
+    private String sinopse;
+
 
     @ManyToOne
     private Serie serie;
@@ -43,6 +44,7 @@ public class Episodio {
             } catch (DateTimeParseException ex) {
                 this.anoLancamento = null;
             }
+        this.sinopse = dadosEpisodio.sinopse();
     }
 
     public Episodio() {}
@@ -57,6 +59,14 @@ public class Episodio {
 
     public Serie getSerie() {
         return serie;
+    }
+
+    public String getSinopse() {
+        return sinopse;
+    }
+
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
     }
 
     public void setSerie(Serie serie) {

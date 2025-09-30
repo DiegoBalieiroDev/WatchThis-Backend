@@ -1,4 +1,4 @@
-package br.com.projeto.screematch.service;
+package br.com.projeto.watchthis.service;
 
 import java.io.IOException;
 import java.net.URI;
@@ -26,26 +26,6 @@ public class ConsumoAPI {
             String json = response.body();
             return json;
         }
-
-        public String buscaDados(String busca) {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://www.omdbapi.com/?t=" + busca.replace(" ", "") + "&apikey=44e7b972"))
-                    .build();
-            HttpResponse<String> response = null;
-            try {
-                response = client
-                        .send(request, HttpResponse.BodyHandlers.ofString());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-
-            String json = response.body();
-            return json;
-        }
-
 
     }
 

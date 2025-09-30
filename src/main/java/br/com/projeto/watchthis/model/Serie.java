@@ -1,11 +1,9 @@
-package br.com.projeto.screematch.model;
+package br.com.projeto.watchthis.model;
 
-import br.com.projeto.screematch.principal.Episodio;
-import br.com.projeto.screematch.service.ConsultaGemini;
-import br.com.projeto.screematch.service.Formatar;
+import br.com.projeto.watchthis.service.ConsultaGemini;
+import br.com.projeto.watchthis.service.Formatar;
 import jakarta.persistence.*;
 
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
@@ -40,7 +38,9 @@ public class Serie {
     private String poster;
 
     @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OrderBy("temporada, numeroEpisodio")
     private List<Episodio> episodios = new ArrayList<>();
+
 
 
     public Serie(DadosSerie dadosSerie){
@@ -70,6 +70,8 @@ public class Serie {
         return episodios;
     }
 
+
+
     public void setEpisodios(List<Episodio> episodios) {
         episodios.forEach(e-> e.setSerie(this));
         this.episodios = episodios;
@@ -81,6 +83,14 @@ public class Serie {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getDiretores() {
+        return diretores;
+    }
+
+    public void setDiretores(String diretores) {
+        this.diretores = diretores;
     }
 
     public Integer getTotalTemporadas() {
@@ -141,7 +151,7 @@ public class Serie {
 
     @Override
     public String toString() {
-        return "Gênero(s): " + genero +
+        return "\nGênero(s): " + genero +
                 "\nSérie: " + titulo +
                 " (" + totalTemporadas + " temporadas)" +
                 " -  atores: " + atores +

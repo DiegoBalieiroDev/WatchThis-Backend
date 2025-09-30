@@ -1,4 +1,4 @@
-package br.com.projeto.screematch.service;
+package br.com.projeto.watchthis.service;
 
 import com.google.genai.Client;
 import com.google.genai.types.GenerateContentResponse;
@@ -11,7 +11,6 @@ public class ConsultaGemini {
         public static String obterTraducao(String texto) {
 
             try {Client client = Client.builder().apiKey(CHAVE).build();;
-
                 GenerateContentResponse response =
                         client.models.generateContent(
                                 "gemini-2.0-flash",

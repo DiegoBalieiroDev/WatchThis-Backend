@@ -1,4 +1,4 @@
-package br.com.projeto.screematch.service;
+package br.com.projeto.watchthis.service;
 
 public interface IConverteDados {
 

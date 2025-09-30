@@ -1,4 +1,4 @@
-package br.com.projeto.screematch.service;
+package br.com.projeto.watchthis.service;
 
 public class Formatar {
     public static String formatar(String anoOriginal) {

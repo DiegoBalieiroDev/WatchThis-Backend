@@ -1,4 +1,4 @@
-package br.com.projeto.screematch.model;
+package br.com.projeto.watchthis.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

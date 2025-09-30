@@ -1,6 +1,5 @@
-package br.com.projeto.screematch.service;
+package br.com.projeto.watchthis.service;
 
-import br.com.projeto.screematch.model.DadosSerie;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

@@ -1,4 +1,4 @@
-package br.com.projeto.screematch.model;
+package br.com.projeto.watchthis.model;
 
 public enum Categoria {
     ACAO("Action", "Ação"),
